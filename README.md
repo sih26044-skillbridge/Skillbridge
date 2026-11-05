@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SkillBridge — SIH26044
 **Portal for Academia–Industry Collaboration for Skill Mapping, Internships and Placement**
 
@@ -120,3 +121,8 @@ Use the 1-click demo filler buttons on the Login page (`/login`) or enter manual
 ### Admin
 - `GET /api/admin/dashboard/` — System telemetry and status breakdown
 - `GET /api/admin/users/` — Platform user list with role filters
+=======
+# Skillbridge
+AI-powered platform for student skill mapping, resume parsing, internship and job recommendations, and academia-industry collaboration.
+
+>>>>>>> origin/main
