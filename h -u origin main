@@ -1,0 +1,73 @@
+[33md7d5077[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Commited the first draft
+ .gitignore                                      |   24 [32m+[m
+ README.md                                       |  122 [32m++[m
+ backend/.env.example                            |   15 [32m+[m
+ backend/config/__init__.py                      |    0
+ backend/config/asgi.py                          |   16 [32m+[m
+ backend/config/settings.py                      |  162 [32m++[m
+ backend/config/urls.py                          |   16 [32m+[m
+ backend/config/wsgi.py                          |   16 [32m+[m
+ backend/core/__init__.py                        |    0
+ backend/core/admin.py                           |   87 [32m+[m
+ backend/core/apps.py                            |    5 [32m+[m
+ backend/core/management/commands/seed_data.py   |  259 [32m+++[m
+ backend/core/matcher.py                         |   93 [32m+[m
+ backend/core/migrations/0001_initial.py         |  185 [32m++[m
+ backend/core/migrations/__init__.py             |    0
+ backend/core/models.py                          |  225 [32m+++[m
+ backend/core/permissions.py                     |   31 [32m+[m
+ backend/core/resume_parser.py                   |  168 [32m++[m
+ backend/core/serializers.py                     |  307 [32m++++[m
+ backend/core/tests.py                           |  165 [32m++[m
+ backend/core/urls.py                            |   62 [32m+[m
+ backend/core/views.py                           |  619 [32m+++++++[m
+ backend/manage.py                               |   22 [32m+[m
+ backend/requirements.txt                        |    6 [32m+[m
+ frontend/.gitignore                             |   24 [32m+[m
+ frontend/.oxlintrc.json                         |    8 [32m+[m
+ frontend/README.md                              |   16 [32m+[m
+ frontend/index.html                             |   13 [32m+[m
+ frontend/package-lock.json                      | 2128 [32m+++++++++++++++++++++++[m
+ frontend/package.json                           |   28 [32m+[m
+ frontend/public/favicon.svg                     |    1 [32m+[m
+ frontend/public/icons.svg                       |   24 [32m+[m
+ frontend/src/App.css                            |  184 [32m++[m
+ frontend/src/App.jsx                            |  141 [32m++[m
+ frontend/src/assets/hero.png                    |  Bin [31m0[m -> [32m13057[m bytes
+ frontend/src/assets/react.svg                   |    1 [32m+[m
+ frontend/src/assets/vite.svg                    |    1 [32m+[m
+ frontend/src/components/LoadingSpinner.jsx      |   17 [32m+[m
+ frontend/src/components/MatchScoreBadge.jsx     |   60 [32m+[m
+ frontend/src/components/Navbar.jsx              |  107 [32m++[m
+ frontend/src/components/ProtectedRoute.jsx      |   34 [32m+[m
+ frontend/src/components/Sidebar.jsx             |  114 [32m++[m
+ frontend/src/components/SkillBadge.jsx          |   45 [32m+[m
+ frontend/src/context/AuthContext.jsx            |   91 [32m+[m
+ frontend/src/index.css                          |    9 [32m+[m
+ frontend/src/layouts/MainLayout.jsx             |   32 [32m+[m
+ frontend/src/main.jsx                           |   10 [32m+[m
+ frontend/src/pages/AdminDashboardPage.jsx       |  210 [32m+++[m
+ frontend/src/pages/ApplicantsPage.jsx           |  229 [32m+++[m
+ frontend/src/pages/JobDetailPage.jsx            |  338 [32m++++[m
+ frontend/src/pages/JobListingPage.jsx           |  219 [32m+++[m
+ frontend/src/pages/LandingPage.jsx              |  199 [32m+++[m
+ frontend/src/pages/LoginPage.jsx                |  169 [32m++[m
+ frontend/src/pages/ManageJobsPage.jsx           |  180 [32m++[m
+ frontend/src/pages/MyApplicationsPage.jsx       |  161 [32m++[m
+ frontend/src/pages/NotFoundPage.jsx             |   24 [32m+[m
+ frontend/src/pages/PostJobPage.jsx              |  341 [32m++++[m
+ frontend/src/pages/RecommendedJobsPage.jsx      |  214 [32m+++[m
+ frontend/src/pages/RecruiterDashboard.jsx       |  198 [32m+++[m
+ frontend/src/pages/RegisterPage.jsx             |  294 [32m++++[m
+ frontend/src/pages/ResumeUploadPage.jsx         |  253 [32m+++[m
+ frontend/src/pages/StudentDashboard.jsx         |  352 [32m++++[m
+ frontend/src/pages/StudentProfilePage.jsx       |  369 [32m++++[m
+ frontend/src/services/admin.service.js          |   19 [32m+[m
+ frontend/src/services/api.js                    |   40 [32m+[m
+ frontend/src/services/application.service.js    |   23 [32m+[m
+ frontend/src/services/auth.service.js           |   30 [32m+[m
+ frontend/src/services/job.service.js            |   38 [32m+[m
+ frontend/src/services/recommendation.service.js |    8 [32m+[m
+ frontend/src/services/student.service.js        |   39 [32m+[m
+ frontend/vite.config.js                         |   14 [32m+[m
+ 71 files changed, 9654 insertions(+)
