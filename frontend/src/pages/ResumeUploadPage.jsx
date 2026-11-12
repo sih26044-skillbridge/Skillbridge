@@ -85,7 +85,7 @@ export const ResumeUploadPage = () => {
       <div>
         <h1 className="text-2xl font-bold text-slate-900">Upload Resume & Auto-Extract Skills</h1>
         <p className="text-sm text-slate-500">
-          PyMuPDF scans your PDF resume, identifies technical proficiencies, normalizes aliases, and recalculates job matches
+          pdf-parse scans your PDF resume, identifies technical proficiencies, normalizes aliases, and recalculates job matches
         </p>
       </div>
 
@@ -176,7 +176,7 @@ export const ResumeUploadPage = () => {
             ) : (
               <>
                 <Sparkles className="w-4 h-4" />
-                Extract Skills with PyMuPDF
+                Extract Skills with AI Parser
               </>
             )}
           </button>
@@ -226,7 +226,7 @@ export const ResumeUploadPage = () => {
           {result.extracted_text_preview && (
             <div className="space-y-1.5">
               <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                Raw Text Preview (PyMuPDF):
+                Raw Text Preview (pdf-parse):
               </h4>
               <pre className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 font-mono whitespace-pre-wrap max-h-36 overflow-y-auto">
                 {result.extracted_text_preview}

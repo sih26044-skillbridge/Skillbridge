@@ -72,7 +72,7 @@ export const RegisterPage = ({ initialRole = 'student' }) => {
           setError(errors || 'Registration failed.');
         }
       } else {
-        setError('Network error. Is the Django backend running?');
+        setError('Network error. Is the Node.js backend running?');
       }
     } finally {
       setLoading(false);

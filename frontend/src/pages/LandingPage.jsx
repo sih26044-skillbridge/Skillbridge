@@ -38,7 +38,7 @@ export const LandingPage = () => {
           </h1>
 
           <p className="text-lg text-slate-300 leading-relaxed max-w-2xl">
-            An automated skill mapping, internship, and placement ecosystem. Upload your resume, automatically extract skills with PyMuPDF, discover verified job matches, and eliminate the employment gap.
+            An automated skill mapping, internship, and placement ecosystem. Upload your resume, automatically extract skills with pdf-parse, discover verified job matches, and eliminate the employment gap.
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
@@ -100,7 +100,7 @@ export const LandingPage = () => {
             </div>
             <h3 className="text-lg font-bold text-slate-800">1. Instant Resume Parsing</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Upload your PDF resume. Our PyMuPDF-powered backend automatically extracts skills, normalizes acronyms (e.g., ML → Machine Learning, JS → JavaScript), and populates your profile.
+              Upload your PDF resume. Our Node.js & pdf-parse powered backend automatically extracts skills, normalizes acronyms (e.g., ML → Machine Learning, JS → JavaScript), and populates your profile.
             </p>
           </div>
 

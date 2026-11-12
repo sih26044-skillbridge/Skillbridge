@@ -88,7 +88,7 @@ export const Sidebar = () => {
             </p>
           </div>
           <p className="text-xs text-blue-700 leading-relaxed">
-            Academia–Industry Skill Mapping & Placement Engine with PyMuPDF parsing.
+            Academia–Industry Skill Mapping & Placement Engine with Node.js & pdf-parse.
           </p>
         </div>
       </div>
