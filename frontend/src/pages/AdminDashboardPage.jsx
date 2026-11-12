@@ -13,6 +13,7 @@ import {
   Building,
   CheckCircle,
   AlertCircle,
+  Database,
 } from 'lucide-react';
 
 export const AdminDashboardPage = () => {
@@ -68,12 +69,14 @@ export const AdminDashboardPage = () => {
         </div>
 
         <a
-          href="http://127.0.0.1:8000/admin/"
+          href="http://localhost:5555"
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md transition-colors"
+          title="Prisma Studio visual DB editor (run 'npm run db:studio' in backend)"
         >
-          Open Django Admin <ExternalLink className="w-3.5 h-3.5" />
+          <Database className="w-3.5 h-3.5" />
+          Open Prisma Studio <ExternalLink className="w-3.5 h-3.5 opacity-75" />
         </a>
       </div>
 
