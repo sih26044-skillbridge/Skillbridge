@@ -96,6 +96,10 @@ const listUsers = async (req, res, next) => {
     const where = role ? { role } : {};
     const users = await prisma.user.findMany({
       where,
+      include: {
+        studentProfile: true,
+        recruiterProfile: true,
+      },
       orderBy: { dateJoined: 'desc' },
     });
 
@@ -108,6 +112,24 @@ const listUsers = async (req, res, next) => {
         is_staff: u.isStaff,
         is_active: u.isActive,
         date_joined: u.dateJoined,
+        student_profile: u.studentProfile
+          ? {
+              id: u.studentProfile.id,
+              full_name: u.studentProfile.fullName,
+              college: u.studentProfile.college,
+              degree: u.studentProfile.degree,
+              graduation_year: u.studentProfile.graduationYear,
+              location: u.studentProfile.location,
+            }
+          : null,
+        recruiter_profile: u.recruiterProfile
+          ? {
+              id: u.recruiterProfile.id,
+              company_name: u.recruiterProfile.companyName,
+              location: u.recruiterProfile.location,
+              company_website: u.recruiterProfile.companyWebsite,
+            }
+          : null,
       }))
     );
   } catch (err) {
