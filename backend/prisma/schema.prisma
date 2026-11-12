@@ -1,0 +1,207 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  student
+  recruiter
+  admin
+}
+
+enum JobType {
+  Full_time  @map("Full-time")
+  Part_time  @map("Part-time")
+  Internship
+  Remote
+  Contract
+}
+
+enum ExperienceLevel {
+  Intern
+  Entry_level  @map("Entry-level")
+  Mid_level    @map("Mid-level")
+  Senior_level @map("Senior-level")
+}
+
+enum ApplicationStatus {
+  Applied
+  Under_Review @map("Under Review")
+  Shortlisted
+  Rejected
+  Selected
+}
+
+model User {
+  id           Int              @id @default(autoincrement())
+  username     String           @unique
+  email        String           @unique
+  passwordHash String
+  role         Role             @default(student)
+  isActive     Boolean          @default(true)
+  isStaff      Boolean          @default(false)
+  dateJoined   DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  studentProfile   StudentProfile?
+  recruiterProfile RecruiterProfile?
+
+  @@map("users")
+}
+
+model StudentProfile {
+  id             Int      @id @default(autoincrement())
+  userId         Int      @unique
+  fullName       String
+  college        String   @default("")
+  degree         String   @default("")
+  graduationYear Int?
+  location       String   @default("")
+  preferredRole  String   @default("")
+  bio            String   @default("")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resumes       Resume[]
+  studentSkills StudentSkill[]
+  applications  Application[]
+  matchResults  MatchResult[]
+
+  @@map("student_profiles")
+}
+
+model RecruiterProfile {
+  id                 Int      @id @default(autoincrement())
+  userId             Int      @unique
+  companyName        String
+  companyWebsite     String   @default("")
+  companyDescription String   @default("")
+  location           String   @default("")
+  contactEmail       String   @default("")
+  contactPhone       String   @default("")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobs Job[]
+
+  @@map("recruiter_profiles")
+}
+
+model Skill {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  category  String   @default("General")
+  createdAt DateTime @default(now())
+
+  studentSkills StudentSkill[]
+  jobSkills     JobSkill[]
+
+  @@map("skills")
+}
+
+model Resume {
+  id               Int      @id @default(autoincrement())
+  studentProfileId Int
+  fileName         String   @default("")
+  filePath         String   @default("")
+  rawText          String   @default("")
+  uploadedAt       DateTime @default(now())
+
+  student       StudentProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
+  extractedSkills StudentSkill[]
+
+  @@map("resumes")
+}
+
+model StudentSkill {
+  id               Int      @id @default(autoincrement())
+  studentProfileId Int
+  skillId          Int
+  resumeId         Int?
+  isManuallyAdded  Boolean  @default(false)
+  createdAt        DateTime @default(now())
+
+  student StudentProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
+  skill   Skill          @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  resume  Resume?        @relation(fields: [resumeId], references: [id], onDelete: SetNull)
+
+  @@unique([studentProfileId, skillId])
+  @@map("student_skills")
+}
+
+model Job {
+  id                  Int              @id @default(autoincrement())
+  recruiterId         Int
+  title               String
+  companyName         String
+  description         String
+  location            String
+  jobType             JobType          @default(Internship)
+  experienceLevel     ExperienceLevel  @default(Entry_level)
+  salaryRange         String           @default("")
+  applicationDeadline DateTime?
+  externalUrl         String           @default("")
+  isActive            Boolean          @default(true)
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  recruiter      RecruiterProfile @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
+  requiredSkills JobSkill[]
+  applications   Application[]
+  matchResults   MatchResult[]
+
+  @@map("jobs")
+}
+
+model JobSkill {
+  id      Int @id @default(autoincrement())
+  jobId   Int
+  skillId Int
+
+  job   Job   @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  skill Skill @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([jobId, skillId])
+  @@map("job_skills")
+}
+
+model Application {
+  id               Int               @id @default(autoincrement())
+  studentProfileId Int
+  jobId            Int
+  status           ApplicationStatus @default(Applied)
+  coverLetter      String            @default("")
+  appliedAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  student StudentProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
+  job     Job            @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@unique([studentProfileId, jobId])
+  @@map("applications")
+}
+
+model MatchResult {
+  id               Int      @id @default(autoincrement())
+  studentProfileId Int
+  jobId            Int
+  matchScore       Float    @default(0.0)
+  matchedSkills    String[] @default([])
+  missingSkills    String[] @default([])
+  calculatedAt     DateTime @updatedAt
+
+  student StudentProfile @relation(fields: [studentProfileId], references: [id], onDelete: Cascade)
+  job     Job            @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@unique([studentProfileId, jobId])
+  @@map("match_results")
+}
