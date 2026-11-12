@@ -20,6 +20,7 @@ import { PostJobPage } from './pages/PostJobPage';
 import { ManageJobsPage } from './pages/ManageJobsPage';
 import { ApplicantsPage } from './pages/ApplicantsPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
+import { AdminUsersPage } from './pages/AdminUsersPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 export default function App() {
@@ -126,7 +127,7 @@ export default function App() {
               path="admin/users"
               element={
                 <ProtectedRoute allowedRoles={['admin']}>
-                  <AdminDashboardPage />
+                  <AdminUsersPage />
                 </ProtectedRoute>
               }
             />
